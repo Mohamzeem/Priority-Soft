@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:priority_soft/Features/Discover/data/models/reviews_model.dart';
+import 'package:priority_soft/Core/models/reviews_model.dart';
 
 class ProductModel extends Equatable {
   final String? title;

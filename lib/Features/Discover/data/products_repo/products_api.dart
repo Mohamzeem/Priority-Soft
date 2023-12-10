@@ -1,12 +1,13 @@
-import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:priority_soft/Core/Extensions/convert_to_string.dart';
-import 'package:priority_soft/Features/Discover/data/models/product_model.dart';
+import 'package:priority_soft/Core/Utils/app_strings.dart';
+import 'package:priority_soft/Core/models/product_model.dart';
 
 class ProductsApi {
   final fireStore = FirebaseFirestore.instance;
   final String formattedId = '';
 
+//^ add product
   addProduct() async {
     await fireStore
         .collection('Products')
@@ -37,11 +38,13 @@ class ProductsApi {
     );
   }
 
-  Future<List<ProductModel>> getData() async {
-    final snapshots = await fireStore.collection('Products').get();
+//^ fetch products
+  Future<List<ProductModel>> getProducts() async {
+    final snapshots =
+        await fireStore.collection(AppStrings.productsCollection).get();
     final data =
         snapshots.docs.map((e) => ProductModel.fromJson(e.data())).toList();
-    print(data[3].reviewss[0].rate);
+    // print(data[3].reviewss[0].rate);
     return data;
   }
 }

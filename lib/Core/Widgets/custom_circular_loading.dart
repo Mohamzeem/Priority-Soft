@@ -22,7 +22,7 @@ class CustomCircularLoading extends StatelessWidget {
         height: height.h,
         width: width.w,
         child: CircularProgressIndicator(
-          color: color ?? AppColor.mainColor,
+          color: color ?? AppColor.kBlack,
           strokeWidth: strokeWidth ?? 3.h,
         ),
       ),
