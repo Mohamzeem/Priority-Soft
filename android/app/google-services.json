@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "635439216891",
+    "project_id": "priority-soft-6824e",
+    "storage_bucket": "priority-soft-6824e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635439216891:android:6fbb18ba421e2cbfbd585e",
+        "android_client_info": {
+          "package_name": "com.example.priority_soft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxF9TPZI8f5PWWv8v45yhygqvRK4B4R9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
