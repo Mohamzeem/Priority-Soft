@@ -44,7 +44,7 @@ class ProductsApi {
         await fireStore.collection(AppStrings.productsCollection).get();
     final data =
         snapshots.docs.map((e) => ProductModel.fromJson(e.data())).toList();
-    // print(data[3].reviewss[0].rate);
+    print(data.length);
     return data;
   }
 }
