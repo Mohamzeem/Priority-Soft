@@ -11,6 +11,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       : super(const CategoriesInitialState());
 
   Future<void> getCategories() async {
+    emit(GetCategoriesLoadingState());
     final result = await repoImpl.getCategories();
     result.fold((failure) => emit(GetCategoriesFailureState(failMsg: failure)),
         (categories) {

@@ -17,4 +17,15 @@ class ProductsRepoImpl implements ProductsRepo {
       return left(e.code.toString());
     }
   }
+
+  @override
+  Future<Either<String, List<ProductModel>>> searchProductsByMark(
+      {required String mark}) async {
+    try {
+      final result = await api.searchProductsByMark(mark: mark);
+      return right(result);
+    } on FirebaseException catch (e) {
+      return left(e.code.toString());
+    }
+  }
 }

@@ -1,15 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 import 'package:priority_soft/Core/Widgets/custom_circular_loading.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
-import 'package:priority_soft/Features/Discover/data/categories_repo/categories_api.dart';
 import 'package:priority_soft/Features/Discover/presentation/view_model/categories_cubit/categories_cubit.dart';
 import 'package:priority_soft/Features/Discover/presentation/view_model/products_cubit/products_cubit.dart';
 
 class CategoriesList extends StatefulWidget {
-  const CategoriesList({super.key});
+  const CategoriesList({Key? key}) : super(key: key);
 
   @override
   State<CategoriesList> createState() => _CategoriesListState();
@@ -23,7 +23,6 @@ class _CategoriesListState extends State<CategoriesList> {
   }
 
   int currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -46,12 +45,15 @@ class _CategoriesListState extends State<CategoriesList> {
                   padding: EdgeInsets.only(right: 15.w),
                   child: InkWell(
                     onTap: () {
+                      setState(() {
+                        currentIndex = index;
+                      });
                       if (item.title! == 'All') {
                         BlocProvider.of<ProductsCubit>(context).getProducts();
                       } else {
-                        CategoriesApi().searchProductsByMark(mark: item.title!);
+                        BlocProvider.of<ProductsCubit>(context)
+                            .searchProductsByMark(mark: item.title!);
                       }
-                      setState(() => currentIndex = index);
                     },
                     child: CustomText(
                       text: item.title!,

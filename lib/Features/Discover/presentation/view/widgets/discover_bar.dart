@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:priority_soft/Core/Utils/app_assets.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
-import 'package:priority_soft/Core/Utils/app_strings.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 
 class DiscoverBar extends StatelessWidget {
@@ -23,7 +23,7 @@ class DiscoverBar extends StatelessWidget {
         InkWell(
           onTap: () {},
           child: Image.asset(
-            AppStrings.cart,
+            AppAssets.cart,
             width: 24.w,
             height: 24.h,
             fit: BoxFit.fill,

@@ -10,6 +10,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit({required this.repoImpl}) : super(const ProductsInitialState());
 
   Future<void> getProducts() async {
+    emit(GetProductsLoadingState());
     final result = await repoImpl.getProducts();
     result.fold((failure) => emit(GetProductsFailureState(failMsg: failure)),
         (products) {
@@ -17,7 +18,21 @@ class ProductsCubit extends Cubit<ProductsState> {
         emit(const GetProductsEmptyState(emptyMsg: 'No Products were found'));
         return;
       }
-      emit(GetProductsSuccessfullState(productslist: products));
+      emit(GetProductsSuccessfullState(allProductslist: products));
+    });
+  }
+
+  Future<void> searchProductsByMark({required String mark}) async {
+    emit(SearchProductsLoadingState());
+    final result = await repoImpl.searchProductsByMark(mark: mark);
+    result.fold((failure) => emit(SearchProductsFailureState(failMsg: failure)),
+        (products) {
+      if (products.isEmpty) {
+        emit(
+            const SearchProductsEmptyState(emptyMsg: 'No Products were found'));
+        return;
+      }
+      emit(SearchProductsSuccessfullState(productslist: products));
     });
   }
 }

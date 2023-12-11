@@ -44,7 +44,21 @@ class ProductsApi {
         await fireStore.collection(AppStrings.productsCollection).get();
     final data =
         snapshots.docs.map((e) => ProductModel.fromJson(e.data())).toList();
-    print(data.length);
+    //print(data.length);
+    return data;
+  }
+
+  //^ filter products by mark or category
+  Future<List<ProductModel>> searchProductsByMark(
+      {required String mark}) async {
+    final snapshots = await fireStore
+        .collection(AppStrings.productsCollection)
+        .where('mark', isEqualTo: mark)
+        .get();
+    final data =
+        snapshots.docs.map((e) => ProductModel.fromJson(e.data())).toList();
+    // print('Listlength= $data.length');
+    // print(data[1].title);
     return data;
   }
 }
