@@ -12,7 +12,7 @@ class DiscoverBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 25.w),
       child: Column(
         children: [
           //^ title

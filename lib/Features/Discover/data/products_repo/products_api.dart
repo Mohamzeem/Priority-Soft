@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 import 'package:priority_soft/Core/Extensions/convert_to_string.dart';
 import 'package:priority_soft/Core/Utils/app_strings.dart';
 import 'package:priority_soft/Core/models/product_model.dart';
@@ -26,12 +27,54 @@ class ProductsApi {
         'price': 780,
         'reviewss': [
           {
-            'comment': 'comment1',
+            'name': 'Nolan Carder',
+            'photo':
+                'https://firebasestorage.googleapis.com/v0/b/priority-soft-6824e.appspot.com/o/name1.png?alt=media&token=8d5a878d-2e1d-4961-801d-97d8d93dea5a',
+            'comment':
+                'Perfect for keeping your feet dry and warm in damp conditions. ',
             'rate': 4.5,
+            'createdAt':
+                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
           },
           {
-            'comment': 'comment2',
-            'rate': 3.9,
+            'name': 'Maria Saris',
+            'photo':
+                'https://firebasestorage.googleapis.com/v0/b/priority-soft-6824e.appspot.com/o/name2.png?alt=media&token=a0bf6408-3abb-4940-9ed6-787b667bf190',
+            'comment':
+                'Perfect for keeping your feet dry and warm in damp conditions. ',
+            'rate': 3.2,
+            'createdAt':
+                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+          },
+          {
+            'name': 'Gretchen Septimus',
+            'photo':
+                'https://firebasestorage.googleapis.com/v0/b/priority-soft-6824e.appspot.com/o/name3.png?alt=media&token=ee4df4ed-f33e-4774-a7f7-ca009183892b',
+            'comment':
+                'Perfect for keeping your feet dry and warm in damp conditions. ',
+            'rate': 3.0,
+            'createdAt':
+                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+          },
+          {
+            'name': 'Roger Stanton',
+            'photo':
+                'https://firebasestorage.googleapis.com/v0/b/priority-soft-6824e.appspot.com/o/name4.png?alt=media&token=7397979f-df9b-4f00-a376-4e8df95f8cf0',
+            'comment':
+                'Perfect for keeping your feet dry and warm in damp conditions. ',
+            'rate': 4.0,
+            'createdAt':
+                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+          },
+          {
+            'name': 'Hanna Levin',
+            'photo':
+                'https://firebasestorage.googleapis.com/v0/b/priority-soft-6824e.appspot.com/o/name5.png?alt=media&token=e684851a-aa28-4d27-b5f1-cd35c4c60abd',
+            'comment':
+                'Perfect for keeping your feet dry and warm in damp conditions. ',
+            'rate': 2.5,
+            'createdAt':
+                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
           },
         ]
       },

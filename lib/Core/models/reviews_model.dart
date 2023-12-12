@@ -5,12 +5,14 @@ class ReviewModel extends Equatable {
   final String? photo;
   final String? comment;
   final dynamic rate;
+  final String? createdAt;
 
   const ReviewModel({
     this.name,
     this.photo,
     this.comment,
     this.rate,
+    this.createdAt,
   });
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
@@ -18,9 +20,10 @@ class ReviewModel extends Equatable {
       name: json['name'] ?? "",
       photo: json['photo'] ?? "",
       comment: json['comment'] ?? "",
-      rate: json['rate'] ?? 0,
+      rate: json['rate'] ?? "",
+      createdAt: json['createdAt'] ?? "",
     );
   }
   @override
-  List<Object> get props => [name!, photo!, comment!, rate!];
+  List<Object> get props => [name!, photo!, comment!, rate!, createdAt!];
 }

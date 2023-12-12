@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:priority_soft/Core/Widgets/custom_circular_loading.dart';
+import 'package:priority_soft/Core/Widgets/custom_snack_bar.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Core/Widgets/empty_image.dart';
-import 'package:priority_soft/Features/Discover/presentation/view/widgets/custom_snack_bar.dart';
 import 'package:priority_soft/Features/Discover/presentation/view/widgets/product_item.dart';
 import 'package:priority_soft/Features/Discover/presentation/view_model/products_cubit/products_cubit.dart';
 
@@ -41,7 +41,10 @@ class _ProductsListState extends State<ProductsList> {
           return const EmptyPage(title: 'No Products Found');
         } else if (state is GetProductsLoadingState ||
             state is SearchProductsLoadingState) {
-          return CustomCircularLoading(height: 35.h, width: 35.w);
+          return Padding(
+            padding: EdgeInsets.only(top: 250.h),
+            child: CustomCircularLoading(height: 35.h, width: 35.w),
+          );
         } else if (state is GetProductsFailureState ||
             state is SearchProductsFailureState) {
           return const CustomText(text: 'Server error');

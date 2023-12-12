@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 
@@ -16,8 +15,8 @@ class MyApp {
         statusBarColor: AppColor.kWhite,
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarDividerColor: Colors.transparent,
-        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: AppColor.kWhite,
+        systemNavigationBarColor: AppColor.kWhite,
         systemNavigationBarIconBrightness: Brightness.dark,
       );
       SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
