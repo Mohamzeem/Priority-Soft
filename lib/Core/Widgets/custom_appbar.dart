@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:priority_soft/Core/Utils/app_assets.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final bool isProfile;
+  final Widget suffix;
   const CustomAppBar({
     Key? key,
     this.title = '',
-    this.isProfile = false,
+    required this.suffix,
   })  : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
   @override
@@ -30,19 +28,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: CustomText(
         text: title,
-        color: AppColor.mainColor,
+        color: AppColor.kBlack,
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
       ),
       centerTitle: true,
       actions: [
-        Padding(
-          padding: EdgeInsets.only(right: 20.w),
-          child: Image.asset(
-            AppAssets.cart,
-            width: 24.w,
-            height: 24.h,
-            fit: BoxFit.fill,
-          ),
-        ),
+        suffix,
       ],
     );
   }

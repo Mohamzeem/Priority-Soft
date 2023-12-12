@@ -3,6 +3,8 @@ import 'package:priority_soft/Features/Discover/data/categories_repo/categories_
 import 'package:priority_soft/Features/Discover/data/categories_repo/categories_repo_impl.dart';
 import 'package:priority_soft/Features/Discover/data/products_repo/products_api.dart';
 import 'package:priority_soft/Features/Discover/data/products_repo/products_repo_impl.dart';
+import 'package:priority_soft/Features/Reviews/data/stars_api.dart';
+import 'package:priority_soft/Features/Reviews/data/stars_repo_impl.dart';
 
 class AppInjector {
   final sl = GetIt.instance;
@@ -18,6 +20,12 @@ class AppInjector {
     sl.registerLazySingleton<CategoriesApi>(() => CategoriesApi());
     sl.registerLazySingleton<CategoriesRepoImpl>(
       () => CategoriesRepoImpl(api: sl()),
+    );
+
+    //^ Stars
+    sl.registerLazySingleton<StarsApi>(() => StarsApi());
+    sl.registerLazySingleton<StarsRepoImpl>(
+      () => StarsRepoImpl(api: sl()),
     );
   }
 }

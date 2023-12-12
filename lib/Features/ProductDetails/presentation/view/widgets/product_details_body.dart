@@ -2,13 +2,15 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:priority_soft/Core/Routes/routes.dart';
 import 'package:priority_soft/Core/Utils/app_assets.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 import 'package:priority_soft/Core/Widgets/custom_button.dart';
 import 'package:priority_soft/Core/Widgets/custom_cashed_image.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Core/models/product_model.dart';
-import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/reviews_list.dart';
+import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/limtied_reviews_list.dart';
 import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/size_circles.dart';
 
 class ProductDetailsBody extends StatelessWidget {
@@ -174,12 +176,15 @@ class ProductDetailsBody extends StatelessWidget {
                     ),
                   ),
                   //^ reviews List
-                  ReviewsList(item: item),
+                  limitedReviewsList(item: item),
                   //^ see reviews button
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 15.h),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        GoRouter.of(context)
+                            .pushNamed(AppRoutes.reviewsView, extra: item);
+                      },
                       child: Container(
                         height: 50.h,
                         width: double.infinity,

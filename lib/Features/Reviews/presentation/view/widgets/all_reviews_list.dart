@@ -7,18 +7,18 @@ import 'package:priority_soft/Core/Widgets/custom_cashed_image.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Core/models/product_model.dart';
 
-class ReviewsList extends StatelessWidget {
+class AllReviewsList extends StatelessWidget {
   final ProductModel item;
-  const ReviewsList({super.key, required this.item});
+  const AllReviewsList({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       reverse: true,
-      itemCount: item.reviewss.length >= 3 ? 3 : item.reviewss.length,
+      itemCount: item.reviewss.length,
       itemBuilder: (context, index) {
-        final review = item.reviewss[item.reviewss.length - 3 + index];
+        final review = item.reviewss[index];
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 5.h),
           child: Column(
