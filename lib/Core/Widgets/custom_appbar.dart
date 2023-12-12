@@ -19,7 +19,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColor.kWhite,
       leading: InkWell(
         onTap: () => GoRouter.of(context).pop(),
         child: const SizedBox(

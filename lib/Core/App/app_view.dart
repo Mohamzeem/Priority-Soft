@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:priority_soft/Core/App/app_bloc_providers.dart';
 import 'package:priority_soft/Core/App/app_info.dart';
 import 'package:priority_soft/Core/Routes/routes.dart';
-import 'package:priority_soft/Core/Utils/app_colors.dart';
+import 'package:priority_soft/Core/Utils/app_theme.dart';
 
 class AppView extends StatelessWidget {
   const AppView({super.key});
@@ -22,10 +22,7 @@ class AppView extends StatelessWidget {
           child: MaterialApp.router(
             title: MyApp.appName,
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              fontFamily: MyApp.fontFamily,
-              scaffoldBackgroundColor: AppColor.kWhite,
-            ),
+            theme: appTheme(),
             routerConfig: AppRoutes().router,
           ),
         ),

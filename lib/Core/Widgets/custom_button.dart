@@ -40,37 +40,34 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: SizedBox(
-        height: height.h,
-        width: width.w,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: backgroundColor ?? AppColor.mainColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(threeRadius ?? 5),
-                topRight: Radius.circular(threeRadius ?? 5),
-                bottomRight: Radius.circular(threeRadius ?? 5),
-                bottomLeft: Radius.circular(lastRadius ?? 5),
-              ),
+    return SizedBox(
+      height: height.h,
+      width: width.w,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor ?? AppColor.mainColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(threeRadius ?? 5),
+              topRight: Radius.circular(threeRadius ?? 5),
+              bottomRight: Radius.circular(threeRadius ?? 5),
+              bottomLeft: Radius.circular(lastRadius ?? 5),
             ),
           ),
-          onPressed: onPressed,
-          child: isLoading
-              ? CustomCircularLoading(
-                  height: loadingHeight!,
-                  width: loadingWidth!,
-                )
-              : CustomText(
-                  text: text,
-                  color: textColor ?? AppColor.kWhite,
-                  fontSize: fontSize ?? 20.sp,
-                  fontWeight: fontWeight,
-                  textAlign: textAlign,
-                ),
         ),
+        onPressed: onPressed,
+        child: isLoading
+            ? CustomCircularLoading(
+                height: loadingHeight!,
+                width: loadingWidth!,
+              )
+            : CustomText(
+                text: text,
+                color: textColor ?? AppColor.kWhite,
+                fontSize: fontSize ?? 20.sp,
+                fontWeight: fontWeight,
+                textAlign: textAlign,
+              ),
       ),
     );
   }
