@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 import 'package:priority_soft/Core/Widgets/custom_appbar.dart';
-import 'package:priority_soft/Core/Widgets/custom_button.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Features/Filter/presentation/view/widgets/brands_list.dart';
 import 'package:priority_soft/Features/Filter/presentation/view/widgets/color_buttons_list.dart';

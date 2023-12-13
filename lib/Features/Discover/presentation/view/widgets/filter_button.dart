@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:priority_soft/Core/Routes/routes.dart';
 import 'package:priority_soft/Core/Utils/app_assets.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
@@ -21,7 +23,9 @@ class FilterButton extends StatelessWidget {
           SizedBox(
             height: 40,
             child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).pushNamed(AppRoutes.filterView);
+                },
                 style:
                     ElevatedButton.styleFrom(backgroundColor: AppColor.kBlack),
                 icon: Image.asset(AppAssets.filterBtn),

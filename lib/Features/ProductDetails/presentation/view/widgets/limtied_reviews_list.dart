@@ -7,9 +7,9 @@ import 'package:priority_soft/Core/Widgets/custom_cashed_image.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Core/models/product_model.dart';
 
-class limitedReviewsList extends StatelessWidget {
+class LimitedReviewsList extends StatelessWidget {
   final ProductModel item;
-  const limitedReviewsList({super.key, required this.item});
+  const LimitedReviewsList({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {

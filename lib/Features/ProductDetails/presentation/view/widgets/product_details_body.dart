@@ -1,8 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:priority_soft/Core/Routes/routes.dart';
 import 'package:priority_soft/Core/Utils/app_assets.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
@@ -176,7 +178,7 @@ class ProductDetailsBody extends StatelessWidget {
                     ),
                   ),
                   //^ reviews List
-                  limitedReviewsList(item: item),
+                  LimitedReviewsList(item: item),
                   //^ see reviews button
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 15.h),
@@ -266,33 +268,127 @@ class ProductDetailsBody extends StatelessWidget {
     );
   }
 
-//* showModalBottomSheet//
+//^ showModalBottomSheet
   Future modelSheet(BuildContext context) async {
     return showModalBottomSheet(
-      useSafeArea: true,
-      //isDismissible: false,
       isScrollControlled: true,
-      backgroundColor: AppColor.kWhite,
       context: context,
-      builder: (context) {
-        return Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisSize: MainAxisSize.min,
-            children: [
-              const CustomText(
-                text: 'Price',
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                color: AppColor.kGray,
-              ),
-              TextFormField()
-            ],
-          ),
-        );
+      builder: (BuildContext context) {
+        return BottonSheetBody(item: item);
       },
+    );
+  }
+}
+
+class BottonSheetBody extends StatelessWidget {
+  final ProductModel item;
+  const BottonSheetBody({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            //^ add to cart
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 15.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const CustomText(
+                    text: 'Add to cart',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: AppColor.kBlack,
+                  ),
+                  InkWell(
+                    onTap: () => GoRouter.of(context).pop(),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.close,
+                        size: 30,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //^ quantity
+            const CustomText(
+              text: 'Quantity',
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: AppColor.kBlack,
+            ),
+            const SizedBox(height: 15.0),
+            //^ quantity field
+            TextField(
+              decoration: InputDecoration(
+                  suffixIcon: Row(
+                children: [
+                  const Spacer(),
+                  const Icon(Icons.remove_circle_outline_outlined),
+                  SizedBox(width: 8.w),
+                  const Icon(Icons.add_circle_outline_outlined)
+                ],
+              )),
+            ),
+            //^ price & addc to cart row
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 15.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CustomText(
+                        text: 'Total Price',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: AppColor.kGray,
+                      ),
+                      CustomText(
+                        text: '\$${item.price!.toString()}',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: AppColor.kBlack,
+                      ),
+                    ],
+                  ),
+                  CustomButton(
+                    onPressed: () {
+                      // modelSheet(context);
+                    },
+                    text: 'ADD TO CART',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    textColor: AppColor.kWhite,
+                    width: 156,
+                    height: 50,
+                    backgroundColor: AppColor.kBlack,
+                    threeRadius: 30,
+                    lastRadius: 30,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

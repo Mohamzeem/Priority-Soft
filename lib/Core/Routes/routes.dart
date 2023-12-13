@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:go_router/go_router.dart';
 import 'package:priority_soft/Core/models/product_model.dart';
 import 'package:priority_soft/Features/Discover/presentation/view/discover_view.dart';
