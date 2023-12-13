@@ -21,7 +21,9 @@ class DiscoverBar extends StatelessWidget {
           fontSize: 30,
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            // ProductsApi().addProduct();
+          },
           child: Image.asset(
             AppAssets.cart,
             width: 24.w,

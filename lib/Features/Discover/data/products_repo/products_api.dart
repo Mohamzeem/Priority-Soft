@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
 import 'package:priority_soft/Core/Extensions/convert_to_string.dart';
 import 'package:priority_soft/Core/Utils/app_strings.dart';
 import 'package:priority_soft/Core/models/product_model.dart';
@@ -10,11 +9,10 @@ class ProductsApi {
 
 //^ add product
   addProduct() async {
-    await fireStore
-        .collection('Products')
-        .doc(formattedId.dateFormatToString())
-        .set(
+    await fireStore.collection('Products').doc('12,10,2023, 10:41:51').update(
       {
+        'colors': ['0xFFFFFFFF', '0xffFF4C5E', '0xFF0EEC51', '0xff101010'],
+        'sizes': ['39.0', '39.5', '40.0', '40.5', '41.0'],
         'id': formattedId.dateFormatToString(),
         'description':
             'Engineered to crush any movement-based workout, these On sneakers enhance the label\'s original Cloud sneaker with cutting edge technologies for a pair',
@@ -33,8 +31,7 @@ class ProductsApi {
             'comment':
                 'Perfect for keeping your feet dry and warm in damp conditions. ',
             'rate': 4.5,
-            'createdAt':
-                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+            'createdAt': '',
           },
           {
             'name': 'Maria Saris',
@@ -43,8 +40,7 @@ class ProductsApi {
             'comment':
                 'Perfect for keeping your feet dry and warm in damp conditions. ',
             'rate': 3.2,
-            'createdAt':
-                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+            'createdAt': '',
           },
           {
             'name': 'Gretchen Septimus',
@@ -53,8 +49,7 @@ class ProductsApi {
             'comment':
                 'Perfect for keeping your feet dry and warm in damp conditions. ',
             'rate': 3.0,
-            'createdAt':
-                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+            'createdAt': '',
           },
           {
             'name': 'Roger Stanton',
@@ -63,8 +58,7 @@ class ProductsApi {
             'comment':
                 'Perfect for keeping your feet dry and warm in damp conditions. ',
             'rate': 4.0,
-            'createdAt':
-                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+            'createdAt': '',
           },
           {
             'name': 'Hanna Levin',
@@ -73,8 +67,7 @@ class ProductsApi {
             'comment':
                 'Perfect for keeping your feet dry and warm in damp conditions. ',
             'rate': 2.5,
-            'createdAt':
-                DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+            'createdAt': '',
           },
         ]
       },
@@ -87,7 +80,8 @@ class ProductsApi {
         await fireStore.collection(AppStrings.productsCollection).get();
     final data =
         snapshots.docs.map((e) => ProductModel.fromJson(e.data())).toList();
-    //print(data.length);
+    // print(data[0].colors[2].color);
+    // print(data[0].sizes.length);
     return data;
   }
 

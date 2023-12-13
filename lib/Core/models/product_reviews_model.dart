@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-class ReviewModel extends Equatable {
+class ProductReviewsModel extends Equatable {
   final String? name;
   final String? photo;
   final String? comment;
   final dynamic rate;
   final String? createdAt;
 
-  const ReviewModel({
+  const ProductReviewsModel({
     this.name,
     this.photo,
     this.comment,
@@ -15,8 +15,8 @@ class ReviewModel extends Equatable {
     this.createdAt,
   });
 
-  factory ReviewModel.fromJson(Map<String, dynamic> json) {
-    return ReviewModel(
+  factory ProductReviewsModel.fromJson(Map<String, dynamic> json) {
+    return ProductReviewsModel(
       name: json['name'] ?? "",
       photo: json['photo'] ?? "",
       comment: json['comment'] ?? "",

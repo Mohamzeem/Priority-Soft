@@ -1,10 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:priority_soft/Core/Routes/routes.dart';
 import 'package:priority_soft/Core/Utils/app_assets.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
@@ -12,8 +10,9 @@ import 'package:priority_soft/Core/Widgets/custom_button.dart';
 import 'package:priority_soft/Core/Widgets/custom_cashed_image.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Core/models/product_model.dart';
+import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/color_list.dart';
 import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/limtied_reviews_list.dart';
-import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/size_circles.dart';
+import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/size_list.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final ProductModel item;
@@ -70,8 +69,8 @@ class ProductDetailsBody extends StatelessWidget {
                                         color: AppColor.kGray,
                                         activeColor: AppColor.kBlack),
                                   )),
-                              //^ color pick
-                              Image.asset(AppAssets.colorsRow)
+                              //^ color list
+                              ColorList(item: item)
                             ],
                           )
                         ],
@@ -134,7 +133,7 @@ class ProductDetailsBody extends StatelessWidget {
                     fontSize: 16,
                   ),
                   //^ size circles
-                  const SizeCircles(),
+                  SizeList(item: item),
                   //^ description text
                   const CustomText(
                     text: 'Description',
@@ -334,15 +333,39 @@ class BottonSheetBody extends StatelessWidget {
             const SizedBox(height: 15.0),
             //^ quantity field
             TextField(
+              keyboardType: TextInputType.number,
+              style: const TextStyle(color: AppColor.kBlack),
               decoration: InputDecoration(
-                  suffixIcon: Row(
-                children: [
-                  const Spacer(),
-                  const Icon(Icons.remove_circle_outline_outlined),
-                  SizedBox(width: 8.w),
-                  const Icon(Icons.add_circle_outline_outlined)
-                ],
-              )),
+                suffixIcon: Row(
+                  children: [
+                    const Spacer(),
+                    const Icon(
+                      Icons.remove_circle_outline_outlined,
+                      size: 30,
+                    ),
+                    SizedBox(width: 10.w),
+                    const Icon(
+                      Icons.add_circle_outline_outlined,
+                      size: 30,
+                    )
+                  ],
+                ),
+                border: const UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColor.kBlack,
+                  ),
+                ),
+                focusedBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColor.kBlack,
+                  ),
+                ),
+                enabledBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColor.kBlack,
+                  ),
+                ),
+              ),
             ),
             //^ price & addc to cart row
             Padding(
@@ -386,6 +409,7 @@ class BottonSheetBody extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 15.h)
           ],
         ),
       ),
