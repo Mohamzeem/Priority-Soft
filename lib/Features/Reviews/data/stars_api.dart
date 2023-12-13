@@ -13,7 +13,7 @@ class StarsApi {
         .get();
     final data =
         snapshots.docs.map((e) => StarsModel.fromJson(e.data())).toList();
-    print(data[4].title);
+    // print(data[4].title);
     return data;
   }
 }

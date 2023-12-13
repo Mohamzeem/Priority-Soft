@@ -6,14 +6,14 @@ import 'package:priority_soft/Core/Widgets/custom_circular_loading.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Features/Reviews/presentation/view_model/stars_cubit/stars_cubit.dart';
 
-class BrandList extends StatefulWidget {
-  const BrandList({super.key});
+class StarsList extends StatefulWidget {
+  const StarsList({super.key});
 
   @override
-  State<BrandList> createState() => _BrandListState();
+  State<StarsList> createState() => _StarsListState();
 }
 
-class _BrandListState extends State<BrandList> {
+class _StarsListState extends State<StarsList> {
   @override
   void initState() {
     super.initState();
@@ -37,7 +37,7 @@ class _BrandListState extends State<BrandList> {
               scrollDirection: Axis.horizontal,
               itemCount: state.starslist.length,
               itemBuilder: (context, index) {
-                final brand = state.starslist[index];
+                final star = state.starslist[index];
                 return Padding(
                   padding: EdgeInsets.only(right: 15.w),
                   child: InkWell(
@@ -47,7 +47,7 @@ class _BrandListState extends State<BrandList> {
                       });
                     },
                     child: CustomText(
-                      text: brand.title!,
+                      text: star.title!,
                       color: currentIndex == index
                           ? AppColor.kBlack
                           : AppColor.kGray,

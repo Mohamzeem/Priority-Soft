@@ -15,7 +15,7 @@ class ReviewsBody extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
           children: [
-            const BrandList(),
+            const StarsList(),
             AllReviewsList(item: item),
           ],
         ),

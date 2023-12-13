@@ -18,7 +18,6 @@ class StarsCubit extends Cubit<StarsState> {
         emit(const GetStarsEmptyState(emptyMsg: 'No Stars were found'));
         return;
       }
-      print(stars);
       emit(GetStarsSuccessfullState(starslist: stars));
     });
   }

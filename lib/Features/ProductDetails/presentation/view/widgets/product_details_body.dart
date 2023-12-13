@@ -245,7 +245,9 @@ class ProductDetailsBody extends StatelessWidget {
                   ],
                 ),
                 CustomButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    modelSheet(context);
+                  },
                   text: 'ADD TO CART',
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
@@ -261,6 +263,36 @@ class ProductDetailsBody extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+//* showModalBottomSheet//
+  Future modelSheet(BuildContext context) async {
+    return showModalBottomSheet(
+      useSafeArea: true,
+      //isDismissible: false,
+      isScrollControlled: true,
+      backgroundColor: AppColor.kWhite,
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisSize: MainAxisSize.min,
+            children: [
+              const CustomText(
+                text: 'Price',
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: AppColor.kGray,
+              ),
+              TextFormField()
+            ],
+          ),
+        );
+      },
     );
   }
 }

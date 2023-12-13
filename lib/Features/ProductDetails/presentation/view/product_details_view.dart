@@ -16,7 +16,7 @@ class ProductDetailsView extends StatelessWidget {
         suffix: Padding(
           padding: EdgeInsets.only(right: 20.w),
           child: Image.asset(
-            AppAssets.cart,
+            AppAssets.cart2,
             width: 24.w,
             height: 24.h,
             fit: BoxFit.fill,
