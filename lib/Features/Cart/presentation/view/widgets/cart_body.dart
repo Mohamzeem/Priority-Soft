@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:priority_soft/Core/Routes/routes.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 import 'package:priority_soft/Core/Widgets/custom_button.dart';
-import 'package:priority_soft/Core/Widgets/custom_cashed_image.dart';
 import 'package:priority_soft/Core/Widgets/custom_circular_loading.dart';
 import 'package:priority_soft/Core/Widgets/custom_snack_bar.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Core/Widgets/empty_image.dart';
-import 'package:priority_soft/Core/models/cart_item_model.dart';
 import 'package:priority_soft/Features/Cart/presentation/view/widgets/cart_item.dart';
 import 'package:priority_soft/Features/Cart/presentation/view_model/cart_cubit/cart_cubit.dart';
 
@@ -35,18 +34,6 @@ class _CartBodyState extends State<CartBody> {
   double? totalPrice;
   @override
   Widget build(BuildContext context) {
-    // var list = BlocProvider.of<CartCubit>(context).totalPrice;
-    // //^ method to calculate the sum of rates
-    // dynamic sumOfRates() {
-    //   dynamic sum = 0;
-    //   for (final price in list) {
-    //     sum += price.price!;
-    //   }
-    //   return sum;
-    // }
-
-    //print('LIST = ${BlocProvider.of<CartCubit>(context).sumOfRates()}');
-
     return Column(
       children: [
         const SizedBox(height: 20),
@@ -137,10 +124,7 @@ class _CartBodyState extends State<CartBody> {
                 //^ Check out button
                 CustomButton(
                   onPressed: () {
-                    // modelSheet(
-                    //   context,
-                    //   widget: AddCartBottonSheetBody(item: item),
-                    // );
+                    GoRouter.of(context).pushNamed(AppRoutes.orderView);
                   },
                   text: 'Check out',
                   fontSize: 14,

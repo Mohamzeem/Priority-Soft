@@ -22,7 +22,7 @@ class AppRoutes {
         name: AppRoutes.discoverView,
         path: "/",
         //TODO: DivsoverView
-        builder: (context, state) => const OrderView(),
+        builder: (context, state) => const DivsoverView(),
       ),
       GoRoute(
         name: AppRoutes.filterView,
