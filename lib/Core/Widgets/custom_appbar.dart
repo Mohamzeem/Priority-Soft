@@ -6,11 +6,10 @@ import 'package:priority_soft/Core/Widgets/custom_text.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget suffix;
-  const CustomAppBar({
-    Key? key,
-    this.title = '',
-    required this.suffix,
-  })  : preferredSize = const Size.fromHeight(kToolbarHeight),
+  final void Function()? onTap;
+  const CustomAppBar(
+      {Key? key, this.title = '', required this.suffix, this.onTap})
+      : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
   @override
   final Size preferredSize;
@@ -18,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: InkWell(
-        onTap: () => GoRouter.of(context).pop(),
+        onTap: onTap ?? () => GoRouter.of(context).pop(),
         child: const SizedBox(
           child: Icon(
             Icons.arrow_back,

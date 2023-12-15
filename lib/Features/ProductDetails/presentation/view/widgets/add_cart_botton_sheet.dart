@@ -110,9 +110,12 @@ class _BottonSheetBodyState extends State<AddCartBottonSheetBody> {
                               _decrement();
                             });
                           },
-                          child: const Icon(
+                          child: Icon(
                             Icons.remove_circle_outline_outlined,
                             size: 30,
+                            color: int.parse(cartController.text) == 1
+                                ? AppColor.kGray
+                                : AppColor.kBlack,
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -161,7 +164,7 @@ class _BottonSheetBodyState extends State<AddCartBottonSheetBody> {
                           color: AppColor.kGray,
                         ),
                         CustomText(
-                          text: '\$${widget.item.price!.toString()}',
+                          text: '\$${widget.item.price!.toStringAsFixed(2)}',
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: AppColor.kBlack,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:priority_soft/Core/Extensions/convert_to_string.dart';
+import 'package:priority_soft/Core/Utils/app_assets.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 import 'package:priority_soft/Core/Widgets/custom_cashed_image.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
@@ -27,11 +28,13 @@ class AllReviewsList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //^ review photo
-                  CustomCashedImage(
-                    imageUrl: review.photo!,
-                    width: 40,
-                    height: 40,
-                  ),
+                  review.photo == null || review.photo!.isEmpty
+                      ? Image.asset(AppAssets.blankPhoto)
+                      : CustomCashedImage(
+                          imageUrl: review.photo!,
+                          width: 40,
+                          height: 40,
+                        ),
                   SizedBox(width: 10.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

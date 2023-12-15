@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:priority_soft/Core/App/app_injector.dart';
+import 'package:priority_soft/Core/Routes/routes.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 import 'package:priority_soft/Core/Widgets/custom_button.dart';
-import 'package:priority_soft/Core/Widgets/custom_snack_bar.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Features/ProductDetails/data/cart_item_repo_impl.dart';
 import 'package:priority_soft/Features/ProductDetails/presentation/view_model/cart_item_cubit/cart_item_cubit.dart';
@@ -87,7 +87,9 @@ class AddCartDoneBottonSheetBody extends StatelessWidget {
                       lastRadius: 30,
                     ),
                     CustomButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        GoRouter.of(context).pushNamed(AppRoutes.cartView);
+                      },
                       text: 'To Cart',
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
