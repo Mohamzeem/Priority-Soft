@@ -35,7 +35,7 @@ class ReviewsView extends StatelessWidget {
                 children: [
                   //^ star of rating
                   RatingBar.builder(
-                    initialRating: item.reviewss[0].rate,
+                    initialRating: 2.5,
                     minRating: 1,
                     itemSize: 25,
                     direction: Axis.horizontal,
@@ -44,14 +44,14 @@ class ReviewsView extends StatelessWidget {
                     itemBuilder: (context, _) =>
                         const Icon(Icons.star, color: Colors.amber),
                     onRatingUpdate: (rating) {
-                      rating = item.reviewss[0].rate;
+                      rating = item.sumOfRates();
                     },
                   ),
                   //^ rating number
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5.w),
                     child: CustomText(
-                      text: item.reviewss[0].rate.toString(),
+                      text: item.sumOfRates().toStringAsFixed(1),
                       color: AppColor.kBlack,
                       fontWeight: FontWeight.w700,
                       fontSize: 14,

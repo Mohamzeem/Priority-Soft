@@ -1,8 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:priority_soft/Core/Routes/routes.dart';
 import 'package:priority_soft/Core/Utils/app_assets.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
@@ -10,13 +12,18 @@ import 'package:priority_soft/Core/Widgets/custom_button.dart';
 import 'package:priority_soft/Core/Widgets/custom_cashed_image.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
 import 'package:priority_soft/Core/models/product_model.dart';
+import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/add_cart_botton_sheet.dart';
+import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/add_cart_done_botton_sheet.dart';
 import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/color_list.dart';
 import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/limtied_reviews_list.dart';
 import 'package:priority_soft/Features/ProductDetails/presentation/view/widgets/size_list.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final ProductModel item;
-  const ProductDetailsBody({super.key, required this.item});
+  const ProductDetailsBody({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,15 +69,18 @@ class ProductDetailsBody extends StatelessWidget {
                             children: [
                               //^ 3 dots
                               Padding(
-                                  padding: EdgeInsets.only(left: 13.w),
-                                  child: DotsIndicator(
-                                    dotsCount: 3,
-                                    decorator: const DotsDecorator(
-                                        color: AppColor.kGray,
-                                        activeColor: AppColor.kBlack),
-                                  )),
+                                padding: EdgeInsets.only(left: 13.w),
+                                child: DotsIndicator(
+                                  dotsCount: 3,
+                                  decorator: const DotsDecorator(
+                                      color: AppColor.kGray,
+                                      activeColor: AppColor.kBlack),
+                                ),
+                              ),
                               //^ color list
-                              ColorList(item: item)
+                              ColorList(
+                                item: item,
+                              )
                             ],
                           )
                         ],
@@ -93,7 +103,7 @@ class ProductDetailsBody extends StatelessWidget {
                       children: [
                         //^ star of rating
                         RatingBar.builder(
-                          initialRating: item.reviewss[0].rate,
+                          initialRating: 2.5,
                           minRating: 1,
                           itemSize: 20,
                           direction: Axis.horizontal,
@@ -102,14 +112,14 @@ class ProductDetailsBody extends StatelessWidget {
                           itemBuilder: (context, _) =>
                               const Icon(Icons.star, color: Colors.amber),
                           onRatingUpdate: (rating) {
-                            rating = item.reviewss[0].rate;
+                            rating = item.sumOfRates();
                           },
                         ),
                         //^ rating number
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5.w),
                           child: CustomText(
-                            text: item.reviewss[0].rate.toString(),
+                            text: item.sumOfRates().toStringAsFixed(1),
                             color: AppColor.kBlack,
                             fontWeight: FontWeight.w600,
                             fontSize: 11,
@@ -132,7 +142,7 @@ class ProductDetailsBody extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                   ),
-                  //^ size circles
+                  //^ size list
                   SizeList(item: item),
                   //^ description text
                   const CustomText(
@@ -231,12 +241,14 @@ class ProductDetailsBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    //^ price text
                     const CustomText(
                       text: 'Price',
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: AppColor.kGray,
                     ),
+                    //^ price value
                     CustomText(
                       text: '\$${item.price!.toString()}',
                       fontSize: 20,
@@ -245,9 +257,13 @@ class ProductDetailsBody extends StatelessWidget {
                     ),
                   ],
                 ),
+                //^ add cart button
                 CustomButton(
                   onPressed: () {
-                    modelSheet(context);
+                    modelSheet(
+                      context,
+                      widget: AddCartBottonSheetBody(item: item),
+                    );
                   },
                   text: 'ADD TO CART',
                   fontSize: 14,
@@ -267,152 +283,15 @@ class ProductDetailsBody extends StatelessWidget {
     );
   }
 
-//^ showModalBottomSheet
-  Future modelSheet(BuildContext context) async {
+//* showModalBottomSheet
+  Future modelSheet(BuildContext context, {required Widget widget}) async {
     return showModalBottomSheet(
+      isDismissible: false,
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
-        return BottonSheetBody(item: item);
+        return widget;
       },
-    );
-  }
-}
-
-class BottonSheetBody extends StatelessWidget {
-  final ProductModel item;
-  const BottonSheetBody({
-    Key? key,
-    required this.item,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            //^ add to cart
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 15.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const CustomText(
-                    text: 'Add to cart',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: AppColor.kBlack,
-                  ),
-                  InkWell(
-                    onTap: () => GoRouter.of(context).pop(),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.close,
-                        size: 30,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            //^ quantity
-            const CustomText(
-              text: 'Quantity',
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: AppColor.kBlack,
-            ),
-            const SizedBox(height: 15.0),
-            //^ quantity field
-            TextField(
-              keyboardType: TextInputType.number,
-              style: const TextStyle(color: AppColor.kBlack),
-              decoration: InputDecoration(
-                suffixIcon: Row(
-                  children: [
-                    const Spacer(),
-                    const Icon(
-                      Icons.remove_circle_outline_outlined,
-                      size: 30,
-                    ),
-                    SizedBox(width: 10.w),
-                    const Icon(
-                      Icons.add_circle_outline_outlined,
-                      size: 30,
-                    )
-                  ],
-                ),
-                border: const UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColor.kBlack,
-                  ),
-                ),
-                focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColor.kBlack,
-                  ),
-                ),
-                enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColor.kBlack,
-                  ),
-                ),
-              ),
-            ),
-            //^ price & addc to cart row
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 15.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CustomText(
-                        text: 'Total Price',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: AppColor.kGray,
-                      ),
-                      CustomText(
-                        text: '\$${item.price!.toString()}',
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: AppColor.kBlack,
-                      ),
-                    ],
-                  ),
-                  CustomButton(
-                    onPressed: () {
-                      // modelSheet(context);
-                    },
-                    text: 'ADD TO CART',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    textColor: AppColor.kWhite,
-                    width: 156,
-                    height: 50,
-                    backgroundColor: AppColor.kBlack,
-                    threeRadius: 30,
-                    lastRadius: 30,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 15.h)
-          ],
-        ),
-      ),
     );
   }
 }

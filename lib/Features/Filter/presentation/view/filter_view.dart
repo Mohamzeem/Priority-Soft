@@ -17,84 +17,86 @@ class FilterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-        suffix: SizedBox(),
+        suffix: SizedBox.shrink(),
         title: 'Filter',
       ),
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //^ brands text
-                  Padding(
-                    padding: EdgeInsets.only(top: 15.h, bottom: 15.h),
-                    child: const CustomText(
-                      text: 'Brands',
-                      color: AppColor.kBlack,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
+      body: SafeArea(
+        child: Column(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //^ brands text
+                    Padding(
+                      padding: EdgeInsets.only(top: 15.h, bottom: 15.h),
+                      child: const CustomText(
+                        text: 'Brands',
+                        color: AppColor.kBlack,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  //^ Brands list
-                  const BrandsList(),
-                  //^ price range text
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.h, bottom: 15.h),
-                    child: const CustomText(
-                      text: 'Price Range',
-                      color: AppColor.kBlack,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                    //^ Brands list
+                    const BrandsList(),
+                    //^ price range text
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.h, bottom: 15.h),
+                      child: const CustomText(
+                        text: 'Price Range',
+                        color: AppColor.kBlack,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  const PriceSlider(),
-                  //^ sorted by text
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.h, bottom: 15.h),
-                    child: const CustomText(
-                      text: 'Sort By',
-                      color: AppColor.kBlack,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                    const PriceSlider(),
+                    //^ sorted by text
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.h, bottom: 15.h),
+                      child: const CustomText(
+                        text: 'Sort By',
+                        color: AppColor.kBlack,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  //^ sorted by buttons list
-                  const SortedByButtonsList(),
-                  //^ gender text
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.h, bottom: 15.h),
-                    child: const CustomText(
-                      text: 'Gender',
-                      color: AppColor.kBlack,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                    //^ sorted by buttons list
+                    const SortedByButtonsList(),
+                    //^ gender text
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.h, bottom: 15.h),
+                      child: const CustomText(
+                        text: 'Gender',
+                        color: AppColor.kBlack,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  //^ gender buttons list
-                  const GenderButtonsList(),
-                  //^ gender text
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.h, bottom: 15.h),
-                    child: const CustomText(
-                      text: 'Color',
-                      color: AppColor.kBlack,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                    //^ gender buttons list
+                    const GenderButtonsList(),
+                    //^ gender text
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.h, bottom: 15.h),
+                      child: const CustomText(
+                        text: 'Color',
+                        color: AppColor.kBlack,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  //^ gender buttons list
-                  const ColorButtonsList(),
-                ],
+                    //^ gender buttons list
+                    const ColorButtonsList(),
+                  ],
+                ),
               ),
             ),
-          ),
-          const Spacer(),
-          //^ reset & apply button
-          const ResetApplyButtons()
-        ],
+            const Spacer(),
+            //^ reset & apply button
+            const ResetApplyButtons(),
+          ],
+        ),
       ),
     );
   }

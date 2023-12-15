@@ -11,7 +11,7 @@ class PriceSlider extends StatefulWidget {
 }
 
 class _PriceSliderState extends State<PriceSlider> {
-  SfRangeValues _currentRangeValues = const SfRangeValues(600, 1300);
+  SfRangeValues _currentRangeValues = const SfRangeValues(600.0, 1300.0);
 
   @override
   Widget build(BuildContext context) {
@@ -34,23 +34,3 @@ class _PriceSliderState extends State<PriceSlider> {
     );
   }
 }
-
-
-/**
- RangeSlider(
-      activeColor: AppColor.kBlack,
-      inactiveColor: AppColor.kBackGround,
-      max: 1750,
-      divisions: 1750,
-      values: _currentRangeValues,
-      labels: RangeLabels(
-        _currentRangeValues.start.round().toString(),
-        _currentRangeValues.end.round().toString(),
-      ),
-      onChanged: (RangeValues values) {
-        setState(() {
-          _currentRangeValues = values;
-        });
-      },
-    );
- */

@@ -27,6 +27,15 @@ class ProductModel extends Equatable {
     required this.sizes,
   });
 
+//^ method to calculate the sum of rates
+  double sumOfRates() {
+    double sum = 0.0;
+    for (final review in reviewss) {
+      sum += review.rate / reviewss.length;
+    }
+    return sum;
+  }
+
   factory ProductModel.fromJson(Map<String, dynamic> map) {
     List<ProductReviewsModel> reviews = [];
     if (map['reviewss'] != null) {
@@ -97,36 +106,3 @@ class ProductModel extends Equatable {
     ];
   }
 }
-
-// class Kdsds extends Equatable {
-//   final List<ProductReviewsModel> reviewss;
-//   final List<ProductColorsModel> colors;
-//   final List<ProductSizesModel> sizes;
-//   const Kdsds({
-//     required this.reviewss,
-//     required this.colors,
-//     required this.sizes,
-//   });
-//   @override
-//   List<Object> get props => [reviewss, colors, sizes];
-
-//   factory Kdsds.fromMap(Map<String, dynamic> map) {
-//     return Kdsds(
-//       reviewss: List<ProductReviewsModel>.from(
-//         (map['reviewss'] as List<int>).map<ProductReviewsModel>(
-//           (x) => ProductReviewsModel.fromJson(x as Map<String, dynamic>),
-//         ),
-//       ),
-//       colors: List<ProductColorsModel>.from(
-//         (map['colors'] as List<int>).map<ProductColorsModel>(
-//           (x) => ProductColorsModel.fromJson(x as Map<String, dynamic>),
-//         ),
-//       ),
-//       sizes: List<ProductSizesModel>.from(
-//         (map['sizes'] as List<int>).map<ProductSizesModel>(
-//           (x) => ProductSizesModel.fromJson(x as Map<String, dynamic>),
-//         ),
-//       ),
-//     );
-//   }
-// }

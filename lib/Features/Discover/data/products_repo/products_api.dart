@@ -7,9 +7,37 @@ class ProductsApi {
   final fireStore = FirebaseFirestore.instance;
   final String formattedId = '';
 
-//^ add product
+//^ fetch products
+  Future<List<ProductModel>> getProducts() async {
+    final snapshots =
+        await fireStore.collection(AppStrings.productsCollection).get();
+    final data =
+        snapshots.docs.map((e) => ProductModel.fromJson(e.data())).toList();
+    // print(data[0].colors[2].color);
+    //print(data[1].reviewss[2].rate);
+    return data;
+  }
+
+  //^ filter products by mark or category
+  Future<List<ProductModel>> searchProductsByMark(
+      {required String mark}) async {
+    final snapshots = await fireStore
+        .collection(AppStrings.productsCollection)
+        .where('mark', isEqualTo: mark)
+        .get();
+    final data =
+        snapshots.docs.map((e) => ProductModel.fromJson(e.data())).toList();
+    // print('Listlength= $data.length');
+    // print(data[1].title);
+    return data;
+  }
+
+  //^ add product
   addProduct() async {
-    await fireStore.collection('Products').doc('12,10,2023, 10:41:51').update(
+    await fireStore
+        .collection('Products')
+        .doc(formattedId.dateFormatToString())
+        .update(
       {
         'colors': ['0xFFFFFFFF', '0xffFF4C5E', '0xFF0EEC51', '0xff101010'],
         'sizes': ['39.0', '39.5', '40.0', '40.5', '41.0'],
@@ -73,98 +101,4 @@ class ProductsApi {
       },
     );
   }
-
-//^ fetch products
-  Future<List<ProductModel>> getProducts() async {
-    final snapshots =
-        await fireStore.collection(AppStrings.productsCollection).get();
-    final data =
-        snapshots.docs.map((e) => ProductModel.fromJson(e.data())).toList();
-    // print(data[0].colors[2].color);
-    // print(data[0].sizes.length);
-    return data;
-  }
-
-  //^ filter products by mark or category
-  Future<List<ProductModel>> searchProductsByMark(
-      {required String mark}) async {
-    final snapshots = await fireStore
-        .collection(AppStrings.productsCollection)
-        .where('mark', isEqualTo: mark)
-        .get();
-    final data =
-        snapshots.docs.map((e) => ProductModel.fromJson(e.data())).toList();
-    // print('Listlength= $data.length');
-    // print(data[1].title);
-    return data;
-  }
 }
-
-/**
- 
-products (collection)
-  - productId1 (document)
-    - productName: "Product 1"
-    - reviews (array)
-      - 0 (map)
-        - rate: 4
-        - comment: "Good product"
-      - 1 (map)
-        - rate: 5
-        - comment: "Excellent"
-  - productId2 (document)
-    - productName: "Product 2"
-    - reviews (array)
-      - 0 (map)
-        - rate: 3
-        - comment: "Not bad"
-
-
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-class ProductReviewsScreen extends StatelessWidget {
-  final String productId;
-
-  ProductReviewsScreen({required this.productId});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Product Reviews'),
-      ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('products')
-            .doc(productId)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return CircularProgressIndicator();
-          }
-
-          var productData = snapshot.data as Map<String, dynamic>;
-          var reviews = productData['reviews'] as List<dynamic>;
-
-          return ListView.builder(
-            itemCount: reviews.length,
-            itemBuilder: (context, index) {
-              var review = reviews[index] as Map<String, dynamic>;
-              var rate = review['rate'] as int;
-              var comment = review['comment'] as String;
-
-              return ListTile(
-                title: Text('Rating: $rate'),
-                subtitle: Text('Comment: $comment'),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
-}
-
-
- */

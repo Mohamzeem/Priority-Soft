@@ -30,10 +30,11 @@ class _ProductsListState extends State<ProductsList> {
         if (state is SearchProductsSuccessfullState) {
           return CustomSnackBar().showSuccessSnackBar(
               context: context, message: 'Products Loaded Successfully');
-        } else if (state is GetProductsSuccessfullState) {
-          return CustomSnackBar().showSuccessSnackBar(
-              context: context, message: 'Products Loaded Successfully');
         }
+        // else if (state is GetProductsSuccessfullState) {
+        //   return CustomSnackBar().showSuccessSnackBar(
+        //       context: context, message: 'Products Loaded Successfully');
+        // }
       },
       builder: (context, state) {
         if (state is GetProductsEmptyState ||

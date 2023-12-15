@@ -45,7 +45,6 @@ class AllReviewsList extends StatelessWidget {
                         fontSize: 14,
                         maxLines: 3,
                       ),
-
                       //^ star of rating
                       RatingBar.builder(
                         initialRating: review.rate,

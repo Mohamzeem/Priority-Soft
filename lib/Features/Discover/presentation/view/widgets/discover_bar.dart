@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:priority_soft/Core/Utils/app_assets.dart';
 import 'package:priority_soft/Core/Utils/app_colors.dart';
 import 'package:priority_soft/Core/Widgets/custom_text.dart';
+// import 'package:priority_soft/Features/Discover/data/products_repo/products_api.dart';
+// import 'package:priority_soft/Features/ProductDetails/data/cart_item_api.dart';
 
 class DiscoverBar extends StatelessWidget {
   const DiscoverBar({
@@ -22,7 +24,17 @@ class DiscoverBar extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            // ProductsApi().addProduct();
+            // CartItemApi().addItemToCart(
+            //   title: 'title',
+            //   price: 'price',
+            //   createdAt: 'createdAt',
+            //   id: 'id',
+            //   photo: 'photo',
+            //   mark: 'mark',
+            //   color: 'color',
+            //   size: 'size',
+            //   number: 2,
+            // );
           },
           child: Image.asset(
             AppAssets.cart,

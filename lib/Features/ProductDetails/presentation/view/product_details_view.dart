@@ -23,7 +23,10 @@ class ProductDetailsView extends StatelessWidget {
           ),
         ),
       ),
-      body: SafeArea(child: ProductDetailsBody(item: item)),
+      body: SafeArea(
+          child: ProductDetailsBody(
+        item: item,
+      )),
     );
   }
 }

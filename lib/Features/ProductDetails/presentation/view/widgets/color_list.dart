@@ -9,7 +9,10 @@ import 'package:priority_soft/Features/Discover/presentation/view_model/products
 
 class ColorList extends StatefulWidget {
   final ProductModel item;
-  const ColorList({Key? key, required this.item}) : super(key: key);
+  const ColorList({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
 
   @override
   State<ColorList> createState() => _ColorListState();
@@ -22,6 +25,7 @@ class _ColorListState extends State<ColorList> {
     BlocProvider.of<ProductsCubit>(context).getProducts();
   }
 
+  late String selectedValue;
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -52,7 +56,7 @@ class _ColorListState extends State<ColorList> {
               scrollDirection: Axis.horizontal,
               itemCount: widget.item.colors.length,
               itemBuilder: (context, index) {
-                final color = widget.item.colors[index];
+                var color = widget.item.colors[index];
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 5.w),
                   child: InkWell(

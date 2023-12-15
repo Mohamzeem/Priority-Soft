@@ -24,9 +24,7 @@ class _ColorButtonsListState extends State<ColorButtonsList> {
           final btn = AppLists.colorButtons[index];
           return Padding(
             padding: EdgeInsets.only(right: 8.w),
-            child: SizedBox(
-              height: 40.h,
-              width: btn.width.w,
+            child: FittedBox(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColor.kWhite,
@@ -50,7 +48,6 @@ class _ColorButtonsListState extends State<ColorButtonsList> {
                   });
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       width: 20.w,
@@ -60,6 +57,7 @@ class _ColorButtonsListState extends State<ColorButtonsList> {
                         shape: BoxShape.circle,
                       ),
                     ),
+                    SizedBox(width: 8.w),
                     CustomText(
                       text: btn.title,
                       color: AppColor.kBlack,

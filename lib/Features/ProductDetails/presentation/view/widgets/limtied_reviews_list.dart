@@ -57,7 +57,7 @@ class LimitedReviewsList extends StatelessWidget {
                         itemBuilder: (context, _) =>
                             const Icon(Icons.star, color: Colors.amber),
                         onRatingUpdate: (rating) {
-                          rating = item.reviewss[0].rate;
+                          rating = item.sumOfRates();
                         },
                       ),
                     ],

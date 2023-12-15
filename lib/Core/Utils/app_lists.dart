@@ -6,30 +6,30 @@ class AppLists {
   static List<ButtonModel> sortedButtons = [
     ButtonModel(
       title: 'Most recent',
-      width: 130,
+      width: 140,
     ),
     ButtonModel(
       title: 'Lowest price',
-      width: 140,
+      width: 145,
     ),
     ButtonModel(
       title: 'Highest price',
-      width: 140,
+      width: 150,
     ),
   ];
 
   static List<ButtonModel> genderButtons = [
     ButtonModel(
       title: 'Man',
-      width: 110,
+      width: 100,
     ),
     ButtonModel(
       title: 'Women',
-      width: 98,
+      width: 110,
     ),
     ButtonModel(
       title: 'Unisex',
-      width: 98,
+      width: 105,
     ),
   ];
 
